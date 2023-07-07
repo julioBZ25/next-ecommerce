@@ -2,6 +2,8 @@ import Link from "next/link";
 import logo from "../assets/logo.png";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { getCart } from "@/lib/db/cart";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 async function searchProduct(formData: FormData) {
   "use server";
@@ -11,7 +13,9 @@ async function searchProduct(formData: FormData) {
   if (searchQuery) redirect("/search?query=" + searchQuery);
 }
 
-const Navbar = () => {
+const Navbar = async () => {
+  const cart = await getCart();
+
   return (
     <div className="bg-base-100">
       <div className="navbar m-auto max-w-7xl flex-col gap-2 sm:flex-row">
@@ -24,7 +28,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex-none gap-2">
-          <form action="">
+          <form action={searchProduct}>
             <div className="form-control">
               <input
                 name="searchQuery"
@@ -34,6 +38,7 @@ const Navbar = () => {
               />
             </div>
           </form>
+          <ShoppingCartButton cart={cart} />
         </div>
       </div>
     </div>
