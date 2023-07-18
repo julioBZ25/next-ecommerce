@@ -5,14 +5,16 @@ import formatPrice from "@/lib/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";
-import { setProductQuantity } from "./actions";
 
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
   setProductQuantity: (productId: string, quantity: number) => Promise<void>;
 }
 
-const CartEntry = ({ cartItem: { product, quantity } }: CartEntryProps) => {
+const CartEntry = ({
+  cartItem: { product, quantity },
+  setProductQuantity,
+}: CartEntryProps) => {
   const [isPending, startTransition] = useTransition();
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {

@@ -47,11 +47,11 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
         <h1 className="text-5xl font-bold">{product.name}</h1>
         <PriceTag price={product.price} />
         <p className="py-6">{product.description}</p>
+        <AddToCartButton
+          productId={product.id}
+          incrementProductQuantity={incrementProductQuantity}
+        />
       </div>
-      <AddToCartButton
-        productId={product.id}
-        incrementProductQuantity={incrementProductQuantity}
-      />
     </div>
   );
 };
