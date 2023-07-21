@@ -19,7 +19,7 @@ export default async function RootLayout({
   const asyncNavbar: JSX.Element = await Navbar();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} h-screen`}>
         <SessionProvider>
           {asyncNavbar}
           <main className="m-auto min-w-[300px] max-w-7xl p-4">{children}</main>
